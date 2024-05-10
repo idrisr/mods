@@ -1,6 +1,5 @@
-{ mkDerivation, base, filepath, fmt, lib, raw-strings-qq, tasty
-, tasty-hunit, time, trifecta
-}:
+{ mkDerivation, base, filepath, fmt, lib, raw-strings-qq, tasty, tasty-hunit
+, time, trifecta }:
 mkDerivation {
   pname = "mods";
   version = "0.1.0.0";
@@ -9,9 +8,7 @@ mkDerivation {
   isExecutable = true;
   libraryHaskellDepends = [ base fmt raw-strings-qq time trifecta ];
   executableHaskellDepends = [ base filepath ];
-  testHaskellDepends = [
-    base raw-strings-qq tasty tasty-hunit trifecta
-  ];
+  testHaskellDepends = [ base raw-strings-qq tasty tasty-hunit trifecta ];
   license = "unknown";
   mainProgram = "mods";
 }

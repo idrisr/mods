@@ -1,49 +1,51 @@
-cabal-version:      3.0
-name:               mods
-version:            0.1.0.0
-build-type:         Simple
+cabal-version: 3.0
+name:          mods
+version:       0.1.0.0
+build-type:    Simple
 
 common warnings
-    ghc-options: -Wall
-    default-extensions: OverloadedStrings
+  ghc-options:        -Wall
+  default-extensions: OverloadedStrings
 
 library
-    import:           warnings
-    exposed-modules:
-                    Agenda
-                    Parser
-    build-depends:
-        base ^>=4.17.2.0
-        , time
-        , fmt
-        , trifecta
-        , raw-strings-qq
-    hs-source-dirs:   src
-    default-language: Haskell2010
+  import:           warnings
+  exposed-modules:
+    Agenda
+    Parser
+
+  build-depends:
+    , base            ^>=4.17.2.0
+    , fmt
+    , raw-strings-qq
+    , time
+    , trifecta
+
+  hs-source-dirs:   src
+  default-language: Haskell2010
 
 executable mods
-    import:           warnings
-    main-is:          Main.hs
-    build-depends:
-        base ^>=4.17.2.0
-        , mods
-        , filepath
+  import:             warnings
+  main-is:            Main.hs
+  build-depends:
+    , base      ^>=4.17.2.0
+    , filepath
+    , mods
 
-    hs-source-dirs:   app
-    default-language: Haskell2010
-    default-extensions: OverloadedStrings
+  hs-source-dirs:     app
+  default-language:   Haskell2010
+  default-extensions: OverloadedStrings
 
 test-suite tests
-    import:           warnings
-    default-language: Haskell2010
-    type:             exitcode-stdio-1.0
-    hs-source-dirs:   test
-    main-is:          Main.hs
-    other-modules: ParserTest
-    build-depends:
-        base ^>=4.17.2.0
-        , mods
-        , raw-strings-qq
-        , tasty
-        , tasty-hunit
-        , trifecta
+  import:           warnings
+  default-language: Haskell2010
+  type:             exitcode-stdio-1.0
+  hs-source-dirs:   test
+  main-is:          Main.hs
+  other-modules:    ParserTest
+  build-depends:
+    , base            ^>=4.17.2.0
+    , mods
+    , raw-strings-qq
+    , tasty
+    , tasty-hunit
+    , trifecta

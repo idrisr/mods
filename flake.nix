@@ -17,6 +17,7 @@
         implicit-hie
         retrie
         cabal-install
+        cabal-fmt
         pkgs.zlib
       ];
       app = pkgs.haskell.packages.${compiler}.callPackage ./cabal.nix;
