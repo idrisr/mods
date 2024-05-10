@@ -21,9 +21,9 @@
       ];
       app = pkgs.haskell.packages.${compiler}.callPackage ./cabal.nix;
     in {
-      overlays = with pkgs; {
-        tasks = final: prev: {
-          tasks = haskell.packages.${compiler}.callPackage ./cabal.nix { };
+      overlays = {
+        mods = _: prev: {
+          mods = prev.haskell.packages.${compiler}.callPackage ./cabal.nix { };
         };
       };
       apps.${system}.default = {
