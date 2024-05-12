@@ -1,12 +1,14 @@
 module Main (main) where
 
-import Test.Tasty
 import ParserTest
+import Test.Tasty
 
 tests :: TestTree
-tests = testGroup "" [
-    parseTests
-    ]
+tests =
+    testGroup
+        ""
+        [ parseTests
+        ]
 
 main :: IO ()
 main = defaultMain tests

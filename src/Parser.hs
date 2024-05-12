@@ -9,7 +9,7 @@ data Activity = Activity
     , offset :: Int
     , desc :: String
     }
-    deriving Eq
+    deriving (Eq)
 
 instance Show Activity where
     show (Activity _ _ s) = s

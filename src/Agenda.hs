@@ -1,11 +1,11 @@
 module Agenda where
 
+import Data.List
 import Data.Time.Calendar
 import Data.Time.Clock
 import Data.Time.LocalTime
 import Fmt
 import Parser
-import Data.List
 
 getCurrentDayOfMonth :: IO Int
 getCurrentDayOfMonth = do
@@ -16,9 +16,13 @@ getCurrentDayOfMonth = do
     return day
 
 doOnDay :: Int -> [Activity] -> [Activity]
-doOnDay t = filter (\x -> let m=freq x
-                              d=offset x
-                         in (t + d) `mod` m == 0)
+doOnDay t =
+    filter
+        ( \x ->
+            let m = freq x
+                d = offset x
+             in (t + d) `mod` m == 0
+        )
 
 today :: IO Int
 today = getCurrentDayOfMonth

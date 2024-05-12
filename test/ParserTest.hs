@@ -5,8 +5,8 @@ module ParserTest where
 import Parser
 import Test.Tasty
 import Test.Tasty.HUnit
-import Text.Trifecta
 import Text.RawString.QQ
+import Text.Trifecta
 
 parseTests :: TestTree
 parseTests =
