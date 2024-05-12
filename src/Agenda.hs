@@ -26,14 +26,17 @@ today = getCurrentDayOfMonth
 tomorrow :: IO Int
 tomorrow = getCurrentDayOfMonth >>= \x -> pure $ x + 1
 
+blockListG :: (Foldable f, Buildable a) => f a -> Builder
+blockListG = blockListF' "- [ ]" build
+
 printAgenda :: [Activity] -> IO ()
-printAgenda as =  do
+printAgenda as = do
     x <- today
     y <- tomorrow
     let j = doOnDay x as
     let k = doOnDay y as
     let xs = sort $ map show j
     let ys = sort $ map show k
-    fmt $ "Today:\n"+|blockListF xs|+""
+    fmt $ "Today:\n" +| blockListG xs |+ ""
     putStrLn ""
-    fmt $ "Tomorrow:\n"+|blockListF ys|+""
+    fmt $ "Tomorrow:\n" +| blockListG ys |+ ""
