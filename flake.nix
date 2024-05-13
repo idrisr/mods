@@ -20,21 +20,20 @@
         cabal-fmt
         pkgs.zlib
       ];
-      app = pkgs.haskell.packages.${compiler}.callPackage ./cabal.nix;
+      app = pkgs.callPackage ./. { inherit compiler; };
+
     in {
       overlays = {
-        mods = _: prev: {
-          mods = prev.haskell.packages.${compiler}.callPackage ./cabal.nix { };
-        };
+        mods = _: prev: { mods = prev.callPackage ./. { inherit compiler; }; };
       };
       apps.${system}.default = {
         type = "app";
-        program = "${app { }}/bin/mods";
+        program = "${app}/bin/mods";
       };
       devShells.${system}.default = pkgs.mkShell {
         buildInputs = myDevTools;
         LD_LIBRARY_PATH = pkgs.lib.makeLibraryPath myDevTools;
       };
-      packages.${system}.default = app { };
+      packages.${system}.default = app;
     };
 }
